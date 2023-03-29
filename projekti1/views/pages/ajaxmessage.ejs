@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/navigator') %>
+    <div class="row align-items-top" id="frontNav"></div>
+    <div class="col-4 align-self-start">
+        <h2>Lähetä AJAX viesti</h2>
+    <form method="post" action="/newmessage">
+        <div class="mb-3">
+          <label class="form-label">Nimi</label>
+          <input type="text" class="form-control" name="name" id="name">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Kotimaa</label>
+          <input type="text" class="form-control" name="country" id="country">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Viesti</label>
+            <input type="text" class="form-control" name="message" id="message">
+        </div>
+        <input id="button1" type="button" class="btn btn-primary" value="Lähetä"></button>
+</form>
+</div>
+<div class="col-8">
+    <!--Tähän diviin tulostuu pöytä, kun käyttäjä lähettää lomakkeen.-->
+    <div id="status"></div>
+</div>
+</body>
+<script>
+    //Koodi lomakkeen lähetykseen.
+    window.onload = event => {
+
+   var nappi = document.getElementById("button1");
+    
+   //Lomakkeen lähetyksen hoitaa onclick-kuuntelija.
+   nappi.addEventListener("click", () => {
+     var user = document.getElementById("name").value;
+     var country = document.getElementById("country").value;
+     var message = document.getElementById("message").value;
+
+    //Luodaan AJAX-pyyntö.
+     var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+       if (this.readyState == 4 && this.status == 200) {
+         document.getElementById("status").innerHTML = this.responseText;
+       }
+     };
+     xmlhttp.open("POST", "/ajax", true);
+     xmlhttp.setRequestHeader(
+       "Content-type",
+       "application/x-www-form-urlencoded"
+     );
+     //Lomakkeen validaatio. 
+     if (user === "" || country === "" || message === "" ) {
+        res.render("pages/ajaxmessage");
+     } else {
+    //Tiedot lähetetään backendiin.
+     xmlhttp.send("user=" + user + "&country=" + country + "&message=" + message);
+     }
+   });
+ };
+
+</script>
+</html>

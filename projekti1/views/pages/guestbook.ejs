@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/navigator') %>
+    <!---Pöytä saa tiedot backendistä ejs-muuttujien avulla.-->
+    <table class="table">
+      <%  for (var i = 0; i < poytadata.length; i++) { %>
+             <tr> 
+             <td><%=  poytadata[i].id  %></td> 
+             <td><%=  poytadata[i].username  %></td> 
+             <td><%=  poytadata[i].country  %></td> 
+             <td><%=  poytadata[i].date  %></td> 
+             <td><%=  poytadata[i].message  %></td> 
+             </tr>
+    <% } %>
+    </table>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/navigator') %>
+    <h2>Lähetä uusi viesti</h2>
+    <form class="lomake" method="post" action="/newmessage">
+        <div class="mb-3">
+          <label class="form-label">Nimi</label>
+          <input type="text" class="form-control" name="name">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Kotimaa</label>
+          <input type="text" class="form-control" name="country">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Viesti</label>
+            <input type="text" class="form-control" name="message">
+        </div>
+        <input type="submit" class="btn btn-primary" value="Lähetä"></button>
+</form>
+</body>
+</html>
